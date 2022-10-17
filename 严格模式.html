@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        严格模式下禁止给对象的只读属性赋值
+     -->
+     <script>
+        // Object.defineProperty(o,v{
+        //  writable:false
+        // })
+        // ue2拦截原理
+        var student={
+            userName:"tom",
+            _age:19,
+            get age(){//get拦截器--getter
+                console.log("age getter");
+                return this._age;
+            },
+            set age(value){//t拦截器--setter
+                if(value<10 || value>100){
+                    console.log("年龄超出范围，赋值失败");
+                    throw new Error("年龄超出范围，赋值失败");
+                }else{
+                    this._age=value;
+                }
+            }
+        }
+
+   var student={
+    userName:"tom",
+    _age:19,
+    get age(){
+    console.log("age getter");
+    return this._age;
+    },
+    set age(value){
+    if(value<10||value>100){
+   console.log("年龄炒出范围，赋值失败");
+    }else{
+        this._age=value;
+    }
+   }
+}
+
+// ES6严格模式 拦截原理 是 Proxy
+// 
+// export {} 导出 用 import {} from /模块名  这种方式导入
+// export default  一个js模块只能有一个默认导出 
+// 导入 import 对象名 from "./文件名"
+// 总结 export导出的时候 ，导入的时候必须带大括号
+// export default 的导出的内容 导入的时候 一定不能带 {}
+
+
+// es5 导出是module.exports  导入是 require（）
+
+     </script>
+</body>
+</html>
